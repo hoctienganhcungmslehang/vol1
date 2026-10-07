@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IELTS Reading Mock Test - Vol 10 Test 1 - Ms Lê Hằng English</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --primary-dark: #6d28d9;
+      --pink: #f43f5e;
+      --teal: #06b6d4;
+      --green: #10b981;
+      --red: #ef4444;
+      --text: #1e293b;
+      --muted: #64748b;
+      --bg: linear-gradient(135deg, #fdf2f8 0%, #ede9fe 50%, #e0f2fe 100%);
+      --card: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Nunito', sans-serif; }
+    body {
+      background: var(--bg);
+      min-height: 100vh;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px 16px 40px;
+    }
+    .app-shell { width: 100%; max-width: 1400px; display: flex; flex-direction: column; gap: 12px; }
+    
+    /* Top Bar */
+    .top-bar {
+      background: var(--card);
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(139, 92, 246, 0.1);
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border: 2px solid #fff;
+    }
+    .badge {
+      font-weight: 800;
+      font-size: 13.5px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .badge-pink { background: var(--pink); }
+    .badge-teal { background: var(--teal); }
+    .hotline-banner {
+      flex: 1;
+      font-size: 13px;
+      font-weight: 700;
+      color: #334155;
+      text-align: center;
+    }
+    .hotline-banner b { color: #e11d48; }
+
+    /* Hero / Timer */
+    .hero-card {
+      background: var(--card);
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(139, 92, 246, 0.08);
+      padding: 12px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border: 1.5px solid #fff;
+    }
+    .hero-title { font-size: 19px; font-weight: 900; color: var(--primary-dark); }
+    .hero-sub { font-size: 12.5px; font-weight: 700; color: var(--muted); }
+    .timer-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fdf4ff;
+      border: 2px solid #f472b6;
+      padding: 5px 14px;
+      border-radius: 50px;
+    }
+    .timer-txt { font-size: 19px; font-weight: 900; color: #be185d; }
+    .btn-timer {
+      background: #ec4899;
+      color: #fff;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .progress-bar-wrap { width: 100%; background: #f1f5f9; height: 8px; border-radius: 999px; overflow: hidden; margin-top: 4px; }
+    .progress-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #ec4899, #8b5cf6, #06b6d4); transition: width 0.3s; }
+
+    /* Tabs */
+    .tab-bar { display: flex; gap: 8px; }
+    .tab-btn {
+      flex: 1;
+      padding: 10px 14px;
+      border: none;
+      background: var(--card);
+      border-radius: 14px;
+      font-weight: 800;
+      font-size: 13.5px;
+      color: var(--muted);
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.03);
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(139, 92, 246, 0.35);
+      transform: translateY(-2px);
+    }
+
+    /* Split Screen */
+    .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; height: calc(100vh - 240px); min-height: 550px; }
+    .pane {
+      background: var(--card);
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(139, 92, 246, 0.08);
+      overflow-y: auto;
+      padding: 20px;
+      border: 1.5px solid #fff;
+      scroll-behavior: smooth;
+    }
+    .pane::-webkit-scrollbar { width: 7px; }
+    .pane::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+
+    /* Passage Styles */
+    .passage-head { border-bottom: 2px dashed #e2e8f0; padding-bottom: 10px; margin-bottom: 14px; }
+    .p-title { font-size: 21px; font-weight: 900; color: #0f172a; }
+    .p-sub { font-size: 13px; font-style: italic; color: #64748b; margin-top: 3px; }
+    .para-box {
+      margin-bottom: 14px;
+      line-height: 1.68;
+      font-size: 14.5px;
+      color: #334155;
+      background: #fafafa;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border-left: 4px solid #c4b5fd;
+    }
+    .para-lbl { font-weight: 900; color: var(--primary); margin-right: 6px; }
+    .btn-trans {
+      margin-top: 8px;
+      background: #fdf2f8;
+      border: 1px solid #fbcfe8;
+      color: #db2777;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .trans-box {
+      display: none;
+      margin-top: 8px;
+      padding: 10px 12px;
+      background: #fff1f2;
+      border-radius: 8px;
+      font-size: 13px;
+      line-height: 1.55;
+      color: #9f1239;
+      border-left: 3px solid #f43f5e;
+    }
+    .flash-target { background: #fde047 !important; color: #000 !important; border-radius: 4px; padding: 2px 4px; }
+    .user-highlighted { background: #ddd6fe !important; color: #4c1d95 !important; border-radius: 4px; padding: 2px 4px; font-weight: 700; }
+
+    /* Exercise Styles */
+    .sec-banner {
+      background: linear-gradient(90deg, #ede9fe, #fae8ff);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #6b21a8;
+      margin-bottom: 12px;
+      border-left: 4px solid #a855f7;
+    }
+    .q-card {
+      background: #fff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+      transition: all 0.2s;
+    }
+    .q-top { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+    .q-num {
+      font-weight: 900;
+      color: #fff;
+      background: var(--primary);
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+    .q-txt { flex: 1; font-size: 14px; font-weight: 700; color: #1e293b; line-height: 1.4; }
+    
+    .sel-box, .inp-box {
+      width: 100%;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 2px solid #cbd5e1;
+      font-size: 13.5px;
+      font-weight: 700;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .sel-box:focus, .inp-box:focus { border-color: var(--primary); }
+    .sel-box.correct, .inp-box.correct { border-color: #22c55e; background: #f0fdf4; color: #166534; }
+    .sel-box.wrong, .inp-box.wrong { border-color: #ef4444; background: #fef2f2; color: #991b1b; }
+    
+    .fill-row { display: flex; gap: 6px; margin-top: 6px; }
+    .btn-chk {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 12.5px;
+      cursor: pointer;
+    }
+    
+    .mc-grid { display: flex; flex-direction: column; gap: 6px; margin-top: 6px; }
+    .mc-opt {
+      background: #f8fafc;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 8px 12px;
+      text-align: left;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .mc-opt:hover:not(.disabled) { background: #f1f5f9; }
+    .mc-opt.correct { background: #dcfce7 !important; border-color: #22c55e !important; color: #15803d !important; font-weight: 800; }
+    .mc-opt.wrong { background: #fee2e2 !important; border-color: #ef4444 !important; color: #b91c1c !important; }
+
+    /* Khung giải thích chi tiết */
+    .detailed-exp-card {
+      display: none;
+      background: #ffffff;
+      border: 2px solid #fed7aa;
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin-top: 12px;
+      box-shadow: 0 4px 16px rgba(249, 115, 22, 0.08);
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .exp-main-title {
+      color: #c2410c;
+      font-size: 15px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .btn-loc {
+      background: #7c3aed;
+      color: #fff;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11.5px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-loc:hover { background: #6d28d9; transform: scale(1.05); }
+
+    .exp-trans-quote {
+      background: #fffbeb;
+      border-radius: 10px;
+      border-left: 5px solid #f59e0b;
+      padding: 10px 14px;
+      font-size: 13.5px;
+      color: #78350f;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .exp-trans-quote b { color: #b45309; }
+
+    .exp-step-title {
+      font-size: 13.8px;
+      font-weight: 800;
+      color: #b45309;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .options-breakdown-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      margin-bottom: 12px;
+    }
+    .option-chip {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #334155;
+    }
+    .option-chip b { color: #2563eb; }
+    .option-chip.highlight b { color: #059669; }
+
+    .badge-why-correct {
+      background: #dcfce7;
+      color: #15803d;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      font-weight: 900;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .badge-why-wrong {
+      background: #fee2e2;
+      color: #b91c1c;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      font-weight: 900;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .exp-bullet-desc {
+      font-size: 13px;
+      color: #334155;
+      line-height: 1.55;
+      margin: 4px 0 12px 16px;
+    }
+    .exp-bullet-desc li { margin-bottom: 4px; }
+    .syn-tag {
+      background: #e0f2fe;
+      color: #0369a1;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 11px;
+      display: inline-block;
+    }
+
+    .cambridge-section {
+      border-top: 1.5px dashed #fed7aa;
+      padding-top: 10px;
+      margin-top: 8px;
+    }
+    .cambridge-title { font-size: 13.5px; font-weight: 800; color: #ea580c; margin-bottom: 4px; }
+    .cambridge-guide-text { font-size: 12.5px; color: #475569; line-height: 1.4; margin-bottom: 8px; }
+    .cambridge-btn-group { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 8px; }
+    .cambridge-pill-btn {
+      background: linear-gradient(90deg, #ff5770 0%, #22c55e 100%);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 5px 12px;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 3px 8px rgba(34, 197, 94, 0.2);
+      transition: all 0.2s;
+    }
+    .cambridge-pill-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 12px rgba(255, 87, 112, 0.35); }
+    .cambridge-tip-footer { font-size: 11.5px; color: #64748b; font-style: italic; }
+
+    /* Footer Promo Banner */
+    .footer-promo {
+      background: linear-gradient(135deg, #f06292 0%, #b258cf 45%, #2575fc 100%);
+      border-radius: 20px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: #fff;
+      margin-top: 6px;
+    }
+    .circle-icon {
+      width: 44px; height: 44px; border-radius: 50%; background: #ff5982;
+      display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;
+    }
+    .pill-badge {
+      background: #fff; color: #1e88e5; font-weight: 900; font-size: 13.5px;
+      padding: 2px 12px; border-radius: 999px; display: inline-flex; margin-left: 4px;
+    }
+
+    @media (max-width: 900px) {
+      .split-grid { grid-template-columns: 1fr; height: auto; }
+      .pane { height: 460px; }
+      .hotline-banner { display: none; }
+      .footer-promo { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-shell">
+
+    <!-- 1. HEADER STATUS -->
+    <header class="top-bar">
+      <div class="badge badge-pink" id="scoreBadge">★ 0/40</div>
+      <div class="hotline-banner">
+        <span>PH HS đăng kí học tiếng anh Khối 1 đến 12, IELTS vui lòng liên hệ <b>Ms Lê Hằng English</b> —</span>
+        <b>☎ Zalo: 0584 965 348</b>
+        <span>— Online + Offline tại Linh Đàm!</span>
+      </div>
+      <div class="badge badge-teal" id="countBadge">0/40 đã làm</div>
+    </header>
+
+    <!-- 2. HERO / TIMER -->
+    <section class="hero-card">
+      <div>
+        <div class="hero-title">🎯 VOL 10 TEST 1 · IELTS READING MOCK TEST</div>
+        <div class="hero-sub">Giáo viên tạo: <b>Ms Lê Hằng English</b> · Hệ thống chấm điểm tự động & Giải thích chi tiết 9.0</div>
+      </div>
+      <div class="timer-box">
+        <span>⏳</span>
+        <span class="timer-txt" id="timerTxt">20:00</span>
+        <button class="btn-timer" id="btnTimer" onclick="toggleTimer()">BẮT ĐẦU</button>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progressFill"></div>
+      </div>
+    </section>
+
+    <!-- 3. TABS CHUYỂN PASSAGE -->
+    <nav class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab(1)">📖 Passage 1: Glassmaking (Q1-13)</button>
+      <button class="tab-btn" onclick="switchTab(2)">🦡 Passage 2: Black-footed Ferret (Q14-26)</button>
+      <button class="tab-btn" onclick="switchTab(3)">🦍 Passage 3: Rights for Apes (Q27-40)</button>
+    </nav>
+
+    <!-- 4. SPLIT SCREEN (ĐỘC LẬP CUỘN) -->
+    <div class="split-grid">
+      <div class="pane" id="passagePane"></div>
+      <div class="pane" id="exercisePane"></div>
+    </div>
+
+    <!-- 5. FOOTER BANNER -->
+    <footer class="footer-promo">
+      <div class="circle-icon">📞</div>
+      <div>
+        <div style="font-size: 15px; font-weight: 900;">
+          PH HS đăng kí học tiếng anh Khối 1 đến 12, IELTS vui lòng liên hệ Ms Lê Hằng English —
+          <span class="pill-badge">💬 zalo 0584 965 348</span>
+        </div>
+        <div style="font-size: 12.5px; font-weight: 700; opacity: 0.95; margin-top: 3px;">
+          📍 Online + Offline tại Linh Đàm · Hệ thống web bài tập độc lạ, chấm tự động, giải chi tiết siêu đẹp!
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    const PASSAGES = [
+      {
+        id: 1,
+        title: "A Brief History of Glassmaking",
+        sub: "Lịch sử tóm lược về ngành chế tác và sản xuất thủy tinh",
+        paragraphs: [
+          { id: "p1-s1", label: "[Paragraph 1]", text: "Earliest known glass items originated in ancient Eastern realms around 3500 BC, fusing sand and metal oxides. Initially crafted for small jewelry and figurine inlays, glass was subsequently used for fragrance and oil containers. The priority was replicating the coloration and texture of semi-precious stones rather than transparency.", trans: "Những đồ vật thủy tinh đầu tiên xuất hiện khoảng 3500 TCN tại phương Đông cổ đại từ cát và oxit kim loại; ban đầu làm đồ trang sức và khảm tượng nhỏ, sau đó dùng làm bình nước hoa với mục đích tái tạo màu sắc của đá quý hơn là độ trong suốt." },
+          { id: "p1-s2", label: "[Paragraph 2]", text: "By 450 BC, Persian glassmakers developed wheel-turning and cutting techniques to produce larger vessels with complex motifs. In contrast, Greek craftsmen concentrated primarily on ceramics, employing colored glass sparingly as decorative inlays in public monuments.", trans: "Đến 450 TCN, thợ Ba Tư phát triển kỹ thuật bàn xoay và cắt gọt để làm bình lớn. Ngược lại, người Hy Lạp chủ yếu tập trung vào đồ gốm và chỉ dùng thủy tinh làm các chi tiết khảm màu nhỏ trên tượng đài." },
+          { id: "p1-s3", label: "[Paragraph 3]", text: "During the 1st and 2nd centuries BC, Hellenistic territories heavily influenced by Eastern artistry began manufacturing luxury glass goods, which eventually exerted a considerable impact on early Roman glass craftsmanship.", trans: "Thế kỷ 1 và 2 TCN, các vùng Hy Lạp chịu ảnh hưởng từ phương Đông bắt đầu sản xuất thủy tinh xa xỉ, tạo ảnh hưởng sâu rộng đến nghệ thuật thủy tinh La Mã thời kỳ đầu." },
+          { id: "p1-s4", label: "[Paragraph 4]", text: "The expansion of the Roman Empire in the 1st century BC catalyzed glass output. While initially regarded as a precious commodity comparable to gemstones, glass gradually evolved from luxury ornamental status into mass-manufactured household items.", trans: "Sự bành trướng của Đế chế La Mã thế kỷ 1 TCN đã thúc đẩy sản xuất thủy tinh. Ban đầu là vật phẩm xa xỉ ngang hàng đá quý, sau đó dần chuyển thành sản phẩm sản xuất hàng loạt phục vụ đời sống." },
+          { id: "p1-s5", label: "[Paragraph 5]", text: "This transformation relied on the Syrian discovery of blowing molten glass through hollow metal tubes, allowing craftsmen to create varied vessels efficiently. Glass became an influential trade asset demonstrating Roman civilizational supremacy to bordering regions.", trans: "Bước tiến này bắt nguồn từ phát hiện của thợ Syria: thổi thủy tinh nóng chảy qua ống kim loại rỗng, giúp sản xuất hàng loạt nhiều loại bình và biến thủy tinh thành hàng hóa thương mại khẳng định sự vượt trội của La Mã." },
+          { id: "p1-s6", label: "[Paragraph 6]", text: "Rome's engineered road networks facilitated rapid spread of designs and blowing methods across provinces. While workshops emerged throughout Italy, Spain, and the Black Sea, production centers remained anchored in Syria, Mesopotamia, and Lower Egypt due to optimal sand and soda ash reserves.", trans: "Mạng lưới đường bộ La Mã giúp truyền bá nhanh chóng các kỹ thuật và mẫu mã. Tuy nhiên các trung tâm lớn vẫn đặt tại Syria, Lưỡng Hà và Hạ Ai Cập nhờ nguồn cát và tro soda dồi dào." },
+          { id: "p1-s7", label: "[Paragraph 7]", text: "In the 1st century AD, Roman households relied heavily on wheel-blown glass for medicine phials, bowls, lamps, and elaborate novelty containers modeled after birds and beasts.", trans: "Vào thế kỷ 1 SCN, các gia đình La Mã sử dụng nhiều bình thủy tinh thổi trên bàn xoay để đựng thuốc, làm bát đèn và cả những bình hình chim thú đòi hỏi kỹ thuật cao." },
+          { id: "p1-s8", label: "[Paragraph 8]", text: "By the 2nd century AD, aesthetic preference shifted from vibrant coloration to material lightness, polished surfaces, and natural greenish-blue transparency, accented by intricate glass threading on vessel rims.", trans: "Đến thế kỷ 2 SCN, thị hiếu chuyển sang độ nhẹ, bề mặt sáng bóng và độ trong suốt tự nhiên màu xanh lục nhạt, điểm xuyết các đường sợi chỉ thủy tinh quấn quanh vành miệng bình." },
+          { id: "p1-s9", label: "[Paragraph 9]", text: "Late Roman production highlighted cutting, engraving, and mold advancements, culminating in masterpieces like shellfish beakers where independently blown marine creatures were fused onto vessel bodies.", trans: "Thời kỳ La Mã muộn nổi bật với kỹ thuật chạm khắc và khuôn đúc tinh xảo, tiêu biểu là cốc vỏ sò với các sinh vật biển được thổi riêng rồi nung gắn lên thân bình." },
+          { id: "p1-s10", label: "[Paragraph 10]", text: "Roman mastery remained influential, sparking the 15th-century Venetian glass revival. Core methods persisted largely unchanged until 19th-century chemistry, and certain ancient techniques continue to puzzle modern glassmakers.", trans: "Nghệ thuật La Mã là nền tảng phục hưng thủy tinh Venice thế kỷ 15. Kỹ thuật hầu như ít biến đổi cho tới khi ngành hóa học phát triển vào thế kỷ 19, và nhiều bí quyết cổ vẫn là câu đố với giới chuyên gia ngày nay." }
+        ]
+      },
+      {
+        id: 2,
+        title: "The return of the black-footed ferret",
+        sub: "The rise, fall, and rise of one of North America’s rarest mammals",
+        paragraphs: [
+          { id: "p2-A", label: "[Paragraph A]", text: "The black-footed ferret is North America's sole indigenous ferret species. Once widespread from Canada to Mexico for millennia, its numbers plunged drastically in the 19th and 20th centuries until it was presumed extinct before an extraordinary resurgence.", trans: "Chồn chân đen là loài chồn bản địa duy nhất ở Bắc Mỹ. Từng phân bố rộng khắp từ Canada tới Mexico, số lượng của chúng suy giảm nghiêm trọng trong thế kỷ 19-20 và từng bị coi là tuyệt chủng trước khi phục hồi kỳ diệu." },
+          { id: "p2-B", label: "[Paragraph B]", text: "Taxonomically, it belongs to the subgenus Putorius alongside the European polecat and the Siberian polecat. The Siberian polecat bears the closest morphological resemblance and shares open steppe grassland habitats.", trans: "Thuộc phân chi Putorius cùng chồn sương châu Âu và Siberia. Trong đó, chồn sương Siberia có ngoại hình và tập tính sống trên đồng cỏ giống chồn chân đen nhất." },
+          { id: "p2-C", label: "[Paragraph C]", text: "Ancestors evolved in Europe and migrated to North America across prehistoric ice-age land bridges. Their ecology is inextricably tied to prairie dogs, their primary prey, whose subterranean tunnel burrows match the ferret's elongated body structure perfectly.", trans: "Tổ tiên của chúng tiến hóa ở châu Âu rồi di cư sang Bắc Mỹ qua cầu lục địa kỷ băng hà. Đời sống của chúng gắn chặt với sóc đồng cỏ - con mồi chính có hệ thống hang ngầm rất vừa vặn với thân hình thon dài của chồn." },
+          { id: "p2-D", label: "[Paragraph D]", text: "Due to secretive underground habits, ferrets eluded early explorers. Documented by Audubon and Bachman in 1851, they were later doubted until Dr. Elliott Coues validated their existence in 1874 following specimen appeals in sporting journals.", trans: "Tập tính sống ngầm khiến chúng khó bị phát hiện. Được mô tả khoa học năm 1851, sự tồn tại của chúng từng bị nghi ngờ cho đến khi Ts. Coues kêu gọi tìm mẫu vật trên tạp chí năm 1874 để xác nhận." },
+          { id: "p2-E", label: "[Paragraph E]", text: "Subsequent agricultural conversion decimated grassland habitats. Ranchers exterminated prairie dogs across 98% of their territory under the belief they competed with cattle for forage, indirectly driving ferrets toward extinction.", trans: "Khai hoang đất đai nông nghiệp đã tàn phá môi trường sống. Người chăn nuôi diệt trừ sóc đồng cỏ trên 98% diện tích do quan niệm sai lầm rằng chúng tranh cỏ với bò, gián tiếp đẩy chồn tới bờ vực diệt vong." },
+          { id: "p2-F", label: "[Paragraph F]", text: "Designated endangered in 1967, the last known South Dakota wild colony vanished by 1974. Following the death of the final captive individual in 1979, the species was formally declared extinct in the wild.", trans: "Được xếp vào diện nguy cấp năm 1967, bầy chồn hoang dã cuối cùng biến mất năm 1974. Đến năm 1979 khi cá thể nuôi nhốt cuối cùng qua đời, loài này chính thức bị tuyên bố tuyệt chủng." },
+          { id: "p2-G", label: "[Paragraph G]", text: "In 1981, a ranch dog in Wyoming discovered a live ferret, leading to the discovery of a surviving colony. When disease threatened this population in 1985, the remaining 18 animals were brought into a pivotal captive-breeding program.", trans: "Năm 1981, một chú chó trang trại ở Wyoming phát hiện một con chồn sống, mở ra hy vọng tìm thấy quần thể còn sót lại. Năm 1985, 18 cá thể cuối cùng được đưa vào chương trình nhân giống nuôi nhốt." },
+          { id: "p2-H", label: "[Paragraph H]", text: "Reintroduction initiatives launched in 1991. Captive animals undergo pre-release survival training, learning live-prey hunting and burrow habitation in specialized outdoor enclosures.", trans: "Chương trình tái thả tự nhiên khởi động năm 1991. Chồn được huấn luyện kỹ năng sinh tồn, săn mồi sống và tập tính ở hang trước khi thả ra môi trường hoang dã." },
+          { id: "p2-I", label: "[Paragraph I]", text: "Current programs operate throughout the central continent, with the Janos border preserve highlighted as the most promising habitat due to extensive prairie dog ecosystems.", trans: "Khu bảo tồn Janos ở biên giới Mỹ - Mexico được xem là địa điểm tái thả lý tưởng nhất nhờ hệ sinh thái đồng cỏ trù phú và lượng sóc đồng cỏ dồi dào." }
+        ]
+      },
+      {
+        id: 3,
+        title: "Rights for Apes",
+        sub: "Humans have rights, other animals don’t – no matter how human-like they are",
+        paragraphs: [
+          { id: "p3-para1", label: "[Paragraph 1]", text: "Global campaigns advocate granting great apes foundational human-like rights based on cognitive parity. The proposal provokes debate, with human rights charities stressing human priority while others seek protection for all intelligent species.", trans: "Các chiến dịch vận động trao quyền cơ bản giống con người cho vượn lớn dựa trên sự tương đồng về nhận thức, dấy lên tranh cãi giữa những người ưu tiên quyền con người và những người muốn mở rộng cho mọi loài động vật thông minh." },
+          { id: "p3-para2", label: "[Paragraph 2]", text: "The Great Ape Project (GAP) spurred New Zealand's 1999 welfare reforms and European research bans. However, attorney Michele Stumpe stresses that without recognizing legal personhood, apes remain categorized as disposable property.", trans: "Dự án GAP đã thúc đẩy New Zealand cải cách luật năm 1999 và châu Âu cấm nghiên cứu y sinh độc hại trên vượn. Tuy nhiên, luật sư Michele Stumpe nhấn mạnh rằng nếu không công nhận tư cách pháp lý (personhood), vượn vẫn chỉ là tài sản sở hữu." },
+          { id: "p3-para3", label: "[Paragraph 3]", text: "Stumpe notes 'rights' simply implies baseline protective safeguards. Philosopher Peter Singer condemns speciesism, arguing moral consideration should extend to all self-aware beings, though humans maintain a psychological barrier separating themselves from animals.", trans: "Stumpe giải thích thuật ngữ 'quyền' đơn giản là sự bảo vệ cơ bản. Triết gia Peter Singer phê phán chủ nghĩa phân biệt loài và kêu gọi công nhận đạo đức cho mọi sinh vật có nhận thức, dù con người vẫn luôn muốn duy trì khoảng cách ngăn cách." },
+          { id: "p3-para4", label: "[Paragraph 4]", text: "Opponents caution against a slippery slope, questioning if shared genetic code implies proportional human rights, whereas Singer advocates taking measured preliminary steps starting with great apes.", trans: "Những người phản đối lo ngại về hệ lụy dây chuyền (như việc chuột có 90% gen giống người thì có 90% quyền không?), trong khi Singer ủng hộ việc tiến hành từng bước thận trọng bắt đầu từ vượn lớn." },
+          { id: "p3-para5", label: "[Paragraph 5]", text: "Gary Francione suggests a simpler principle: no sentient creature capable of feeling suffering should be held as property, an approach that would eliminate captive breeding entirely and is viewed by many as excessively radical.", trans: "Gary Francione đề xuất nguyên tắc triệt để hơn: không sinh vật nào có tri giác lại bị coi là tài sản sở hữu, điều này sẽ chấm dứt hoàn toàn việc nuôi nhốt gia súc thú cưng và bị nhiều người coi là quá cực đoan." },
+          { id: "p3-para6", label: "[Paragraph 6]", text: "Primatologist Frans de Waal counters that legal rights correlate directly with civic responsibilities. He recommends redirecting emphasis toward human moral duties regarding animal welfare and habitat preservation.", trans: "Nhà linh trưởng học Frans de Waal phản biện rằng quyền phải đi kèm trách nhiệm công dân. Ông đề xuất tập trung vào nghĩa vụ đạo đức của con người trong việc chăm sóc và bảo tồn động vật." },
+          { id: "p3-para7", label: "[Paragraph 7]", text: "Ian Redmond suggests legal status could deter illegal poaching and commercial trafficking from the wild, lowering market demand in Western collections.", trans: "Ian Redmond cho rằng nâng cao nhận thức và bảo hộ pháp lý sẽ giảm thiểu nhu cầu mua bán và săn bắt trộm vượn từ tự nhiên sang các nước phương Tây." }
+        ]
+      }
+    ];
+
+    const QUESTIONS = [
+      // PASSAGE 1 (Q1 - 13)
+      { q: 1, p: 1, type: "tfng", text: "By about 450 BC, glass had become as important as ceramics in Greece.", ans: "FALSE", target: "p1-s2", quote: "Greeks still concentrated their energies on ceramics, and used glass simply for coloured inlays...", trans: "Người Hy Lạp vẫn dồn sức vào đồ gốm sứ và chỉ dùng thủy tinh làm khảm màu nhỏ (gốm sứ quan trọng hơn).", syn: "as important as ceramics ≠ concentrated on ceramics", q_trans: "Đến khoảng năm 450 TCN, thủy tinh đã trở nên quan trọng ngang với đồ gốm sứ ở Hy Lạp.", cambridge: ["ceramics", "sculpture", "energy"] },
+      { q: 2, p: 1, type: "tfng", text: "The glassmakers of the early Roman Empire made copies of luxury Greek items.", ans: "NOT GIVEN", target: "p1-s3", quote: "...industry was in turn to have a profound effect on the glass art of the early-Roman Empire.", trans: "Bài đọc nêu ngành này ảnh hưởng lớn đến La Mã nhưng KHÔNG hề khẳng định thợ La Mã có sao chép (copies) đồ Hy Lạp hay không.", syn: "profound effect ≠ made copies (không nhắc đến)", q_trans: "Những người thợ làm thủy tinh thời kỳ đầu La Mã đã làm các bản sao của những món đồ xa xỉ Hy Lạp.", cambridge: ["luxury", "profound", "industry"] },
+      { q: 3, p: 1, type: "tfng", text: "With the rise of the Roman Empire, glass objects became more common.", ans: "TRUE", target: "p1-s4", quote: "...accompanied by an increase in glass production... steps from luxury to mass production... were taken.", trans: "Sản xuất tăng mạnh và chuyển sang sản xuất hàng loạt -> Đồ thủy tinh trở nên phổ biến hơn.", syn: "became more common = increase in production / mass production", q_trans: "Cùng với sự trỗi dậy của Đế chế La Mã, các đồ vật bằng thủy tinh đã trở nên phổ biến hơn.", cambridge: ["production", "luxury", "expand"] },
+      { q: 4, p: 1, type: "tfng", text: "Syrian glassmakers created many different types of objects by blowing glass.", ans: "TRUE", target: "p1-s5", quote: "...became possible for these craftsmen to produce a large variety of vessels for different uses...", trans: "Kỹ thuật thổi giúp thợ Syria chế tác vô số loại bình chứa đa dạng cho các mục đích khác nhau.", syn: "many different types = a large variety of vessels", q_trans: "Những người thợ thủy tinh Syria đã tạo ra nhiều chủng loại đồ vật khác nhau bằng kỹ thuật thổi thủy tinh.", cambridge: ["variety", "decorative", "tube"] },
+      { q: 5, p: 1, type: "tfng", text: "The Roman road network provided a safer way of transporting glass than previous methods.", ans: "NOT GIVEN", target: "p1-s6", quote: "The well-planned network of roads... ensured that the new shapes... were quickly spread...", trans: "Đường xá giúp phổ biến nhanh chóng (quickly spread), KHÔNG so sánh xem có an toàn hơn (safer way) các phương thức cũ hay không.", syn: "quickly spread ≠ safer way", q_trans: "Mạng lưới đường xá La Mã đã mang lại một phương thức vận chuyển thủy tinh an toàn hơn các phương thức trước đó.", cambridge: ["transport", "network", "ensure"] },
+      { q: 6, p: 1, type: "tfng", text: "Roman glass vessels produced in the 1st century AD were restricted to simple designs.", ans: "FALSE", target: "p1-s7", quote: "Even vessels technically very difficult to produce have been found, such as playful bottles in the shape of birds...", trans: "Có cả những bình tạo hình chim thú đòi hỏi kỹ thuật rất phức tạp -> Không hề bị giới hạn ở các thiết kế đơn giản.", syn: "restricted to simple designs ≠ technically very difficult", q_trans: "Các bình thủy tinh La Mã sản xuất vào thế kỷ 1 SCN chỉ bị giới hạn trong các thiết kế đơn giản.", cambridge: ["vessel", "extract", "restrict"] },
+      { q: 7, p: 1, type: "fill", text: "2nd century AD: greater emphasis on glass having a _______, lightness and transparency", ans: ["shiny surface", "a shiny surface"], target: "p1-s8", quote: "...the transparency and also lightness of the material as well as its shiny surface, came to be valued more.", trans: "Độ nhẹ, độ trong suốt và bề mặt sáng bóng (shiny surface) được đánh giá cao hơn.", syn: "greater emphasis = came to be valued more", q_trans: "Thế kỷ 2 SCN: chú trọng nhiều hơn vào việc thủy tinh có một _______, độ nhẹ và độ trong suốt.", cambridge: ["transparency", "lightness", "surface"] },
+      { q: 8, p: 1, type: "fill", text: "complex _______ were often added, as well as coloured accents", ans: ["details", "intricate details"], target: "p1-s8", quote: "...an increasing tendency to apply intricate details, and a few coloured accents...", trans: "Thêm vào các chi tiết phức tạp (intricate details = complex details).", syn: "complex = intricate", q_trans: "các _______ phức tạp thường được thêm vào, cũng như các điểm nhấn màu sắc.", cambridge: ["intricate", "accent", "tendency"] },
+      { q: 9, p: 1, type: "fill", text: "extra threads of glass used to highlight the _______ of vessels", ans: ["rims", "mouths"], target: "p1-s8", quote: "...wrapped around the rims to give emphasis to the vessels’ mouths.", trans: "Quấn quanh vành (rims) để tạo điểm nhấn cho miệng bình.", syn: "used to highlight = give emphasis to", q_trans: "các sợi thủy tinh phụ được thêm vào để làm nổi bật phần _______ của các bình chứa.", cambridge: ["thread", "emphasis", "rim"] },
+      { q: 10, p: 1, type: "fill", text: "Late Roman period: high point of later Roman glassmaking can be seen in containers like the _______", ans: ["shellfish beaker"], target: "p1-s9", quote: "Later vessels such as the so-called shellfish beaker represented a climax in glassmaking...", trans: "Cốc vỏ sò (shellfish beaker) đại diện cho đỉnh cao trong nghề làm thủy tinh thời kỳ này.", syn: "high point = climax, containers = vessels", q_trans: "Thời kỳ La Mã muộn: đỉnh cao của nghề làm thủy tinh có thể thấy ở các vật chứa như _______.", cambridge: ["climax", "beaker", "mould"] },
+      { q: 11, p: 1, type: "fill", text: "from the 15th century, Venetians used old techniques like _______ and thread-glass decoration", ans: ["mosaic glass"], target: "p1-s10", quote: "...revival of such methods as thread-glass decoration or mosaic glass.", trans: "Người Venice hồi sinh kỹ thuật cổ như trang trí sợi thủy tinh hoặc thủy tinh mosaic.", syn: "used old techniques = revival of such methods", q_trans: "từ thế kỷ 15, người Venice dùng lại các kỹ thuật cổ như _______ và trang trí bằng sợi chỉ thủy tinh.", cambridge: ["revival", "mosaic", "decoration"] },
+      { q: 12, p: 1, type: "fill", text: "acceptance of _______ as a subject for serious study in the 19th century led to improvements in glassmaking technology.", ans: ["chemistry"], target: "p1-s10", quote: "Until chemistry became an established scientific discipline in the second quarter of that century...", trans: "Ngành hóa học (chemistry) trở thành ngành khoa học vững chắc giúp cải tiến công nghệ.", syn: "subject for serious study = established scientific discipline", q_trans: "sự công nhận _______ là một ngành nghiên cứu nghiêm túc trong thế kỷ 19 đã dẫn tới những cải tiến về công nghệ.", cambridge: ["discipline", "improvement", "chemistry"] },
+      { q: 13, p: 1, type: "fill", text: "some methods dating back to the Roman Empire continue to be a _______ for today’s glassmakers", ans: ["puzzle"], target: "p1-s10", quote: "...techniques used in the Roman Empire remain a puzzle that modern glass technicians cannot resolve.", trans: "Nhiều kỹ thuật thời La Mã vẫn là câu đố / bí ẩn (puzzle) chưa thể giải đáp.", syn: "continue to be = remain, today's glassmakers = modern technicians", q_trans: "một số phương pháp từ thời Đế chế La Mã tiếp tục là một _______ đối với các thợ thủy tinh ngày nay.", cambridge: ["puzzle", "resolve", "technician"] },
+
+      // PASSAGE 2 (Q14 - 26)
+      { q: 14, p: 2, type: "fill", text: "The black-footed ferret shares most characteristics with its relative, the _______.", ans: ["Siberian polecat", "the Siberian polecat"], target: "p2-B", quote: "The Siberian polecat looks more similar to the black-footed ferret, and leads a similar life...", trans: "Chồn sương Siberia trông giống chồn chân đen nhất và có lối sống tương tự.", syn: "shares most characteristics = looks more similar", q_trans: "Chồn chân đen có nhiều đặc điểm tương đồng nhất với họ hàng của nó là loài _______.", cambridge: ["characteristic", "relative", "carnivorous"] },
+      { q: 15, p: 2, type: "fill", text: "North American ferrets are thought to have originally come from _______.", ans: ["Europe"], target: "p2-C", quote: "Ferrets probably evolved in Europe between three and four million years ago, and dispersed into North America...", trans: "Chồn tiến hóa ở châu Âu (Europe) rồi di cư sang Bắc Mỹ qua cầu lục địa băng hà.", syn: "originally come from = evolved in Europe", q_trans: "Chồn Bắc Mỹ được cho là có nguồn gốc ban đầu từ _______.", cambridge: ["evolve", "disperse", "passageway"] },
+      { q: 16, p: 2, type: "fill", text: "The _______ is the black-footed ferret’s primary source of food throughout their time in North America.", ans: ["prairie dog"], target: "p2-C", quote: "...inextricably linked to the creature which became almost its sole prey – the prairie dog.", trans: "Gắn liền với con mồi gần như duy nhất: sóc đồng cỏ (prairie dog).", syn: "primary source of food = almost its sole prey", q_trans: "Loài _______ là nguồn thức ăn chính của chồn chân đen trong suốt thời gian chúng sống ở Bắc Mỹ.", cambridge: ["prey", "burrow", "inextricably"] },
+      { q: 17, p: 2, type: "select", options: ["A (1851)", "B (1874)", "C (1967)", "D (1974)", "E (1979)", "F (1981)", "G (1985)", "H (1991)"], text: "An appeal for evidence of black-footed ferrets was published.", ans: "B", target: "p2-D", quote: "Then, in 1874, a Dr Elliott Coues issued a request for specimens through the popular magazine...", trans: "Năm 1874, Ts. Coues đưa ra lời kêu gọi tìm kiếm mẫu vật trên tạp chí.", syn: "appeal for evidence = request for specimens", q_trans: "Một lời kêu gọi cung cấp bằng chứng / mẫu vật về chồn chân đen đã được công bố rộng rãi.", cambridge: ["specimen", "evidence", "naturalist"] },
+      { q: 18, p: 2, type: "select", options: ["A (1851)", "B (1874)", "C (1967)", "D (1974)", "E (1979)", "F (1981)", "G (1985)", "H (1991)"], text: "A scheme for releasing captive-born black-footed ferrets into the wild was launched.", ans: "H", target: "p2-H", quote: "A reintroduction programme began in 1991. Before they can be reintroduced...", trans: "Chương trình tái thả tự nhiên (reintroduction programme) bắt đầu năm 1991.", syn: "scheme for releasing = reintroduction programme", q_trans: "Một chương trình phóng thích những con chồn nuôi nhốt về tự nhiên đã được phát động.", cambridge: ["reintroduction", "habitat", "predator"] },
+      { q: 19, p: 2, type: "select", options: ["A (1851)", "B (1874)", "C (1967)", "D (1974)", "E (1979)", "F (1981)", "G (1985)", "H (1991)"], text: "The black-footed ferret first appeared in a scientific work.", ans: "A", target: "p2-D", quote: "...not officially recognized by scientists until 1851, when a description and drawing of one featured in a book...", trans: "Lần đầu được khoa học chính thức công nhận và mô tả trong sách năm 1851.", syn: "first appeared in scientific work = officially recognized in 1851", q_trans: "Chồn chân đen lần đầu tiên xuất hiện trong một công trình nghiên cứu khoa học.", cambridge: ["recognize", "scientific", "specimen"] },
+      { q: 20, p: 2, type: "select", options: ["A (1851)", "B (1874)", "C (1967)", "D (1974)", "E (1979)", "F (1981)", "G (1985)", "H (1991)"], text: "The discovery of a single black-footed ferret led to renewed hope for the species.", ans: "F", target: "p2-G", quote: "In 1981, a farm dog called Shep carried an oddlooking creature... led to efforts again being made...", trans: "Năm 1981, một chú chó mang xác chồn về giúp nhen nhóm lại nỗ lực cứu lấy loài này.", syn: "renewed hope = efforts again being made", q_trans: "Việc phát hiện ra một cá thể chồn chân đen duy nhất đã nhen nhóm lại hy vọng cho loài này.", cambridge: ["colony", "discovery", "distemper"] },
+      { q: 21, p: 2, type: "select", options: ["A (1851)", "B (1874)", "C (1967)", "D (1974)", "E (1979)", "F (1981)", "G (1985)", "H (1991)"], text: "North America’s last wild-born black-footed ferrets were taken into captivity.", ans: "G", target: "p2-G", quote: "In 1985, in a final bid to save the species, the remaining 18 individuals in the colony were trapped...", trans: "Năm 1985, 18 cá thể hoang dã cuối cùng được bẫy vào chương trình nuôi nhốt.", syn: "taken into captivity = trapped for captive-breeding", q_trans: "Những cá thể chồn sinh ra ngoài tự nhiên cuối cùng đã được đưa vào môi trường nuôi nhốt.", cambridge: ["captive", "breeding", "individual"] },
+      { q: 22, p: 2, type: "select", options: ["A (1851)", "B (1874)", "C (1967)", "D (1974)", "E (1979)", "F (1981)", "G (1985)", "H (1991)"], text: "Efforts to save the black-footed ferret were officially announced as having failed.", ans: "E", target: "p2-F", quote: "Finally, in January 1979, the last ferret in a captive-breeding programme died — making the ferret... declared extinct...", trans: "Tháng 1/1979 cá thể cuối cùng chết và bị tuyên bố tuyệt chủng (thất bại hoàn toàn).", syn: "announced as having failed = declared extinct", q_trans: "Các nỗ lực cứu lấy chồn chân đen đã chính thức bị tuyên bố là thất bại hoàn toàn.", cambridge: ["extinct", "disappear", "mammal"] },
+      { q: 23, p: 2, type: "select", options: ["Paragraph A", "Paragraph B", "Paragraph C", "Paragraph D", "Paragraph E", "Paragraph F", "Paragraph G", "Paragraph H", "Paragraph I"], text: "reasons for the sharp decrease in black-footed ferret populations.", ans: "Paragraph E", target: "p2-E", quote: "As agriculture and ranching expanded, the black-footed ferret’s main prey... became a target for extermination...", trans: "Đoạn E giải thích nguyên nhân suy giảm là do mở rộng nông nghiệp và diệt trừ sóc đồng cỏ.", syn: "sharp decrease = devastating result, extermination", q_trans: "Các nguyên nhân dẫn tới sự suy giảm nghiêm trọng số lượng quần thể chồn chân đen.", cambridge: ["extermination", "devastating", "landscape"] },
+      { q: 24, p: 2, type: "select", options: ["Paragraph A", "Paragraph B", "Paragraph C", "Paragraph D", "Paragraph E", "Paragraph F", "Paragraph G", "Paragraph H", "Paragraph I"], text: "the procedure by which black-footed ferrets are taught to survive in the wild.", ans: "Paragraph H", target: "p2-H", quote: "Before they can be reintroduced... captive ferrets have to learn to hunt and escape... unleash live prey...", trans: "Đoạn H trình bày quy trình huấn luyện săn mồi sống và tập chui vào hang đất.", syn: "taught to survive = learn to hunt and escape", q_trans: "Quy trình huấn luyện chồn chân đen cách sinh tồn ngoài tự nhiên hoang dã.", cambridge: ["procedure", "survive", "unleash"] },
+      { q: 25, p: 2, type: "select", options: ["Paragraph A", "Paragraph B", "Paragraph C", "Paragraph D", "Paragraph E", "Paragraph F", "Paragraph G", "Paragraph H", "Paragraph I"], text: "mention of doubts about whether there was such an animal as a black-footed ferret.", ans: "Paragraph D", target: "p2-D", quote: "For over two decades, no other specimens were seen, and scientists even began to question their existence.", trans: "Đoạn D nhắc việc giới khoa học từng hoài nghi về sự tồn tại của loài này.", syn: "doubts about existence = question their existence", q_trans: "Đề cập đến những sự hoài nghi về việc liệu có tồn tại loài vật như chồn chân đen hay không.", cambridge: ["existence", "doubt", "specimen"] },
+      { q: 26, p: 2, type: "select", options: ["Paragraph A", "Paragraph B", "Paragraph C", "Paragraph D", "Paragraph E", "Paragraph F", "Paragraph G", "Paragraph H", "Paragraph I"], text: "reference to a site which is ideal for the release of black-footed ferrets into the wild.", ans: "Paragraph I", target: "p2-I", quote: "The Janos area on the US-Mexico border is the obvious place to reactivate the continent’s wild population...", trans: "Đoạn I chỉ ra vùng Janos là địa điểm lý tưởng để tái thả chồn vào tự nhiên.", syn: "ideal site = obvious place to reactivate", q_trans: "Đề cập đến một địa điểm lý tưởng để tái thả chồn chân đen về với tự nhiên.", cambridge: ["ecosystem", "abundance", "reactivate"] },
+
+      // PASSAGE 3 (Q27 - 40)
+      { q: 27, p: 3, type: "select", options: ["A (experience)", "B (well-being)", "C (knowledge)", "D (regulations)", "E (charities)", "F (research)", "G (dolphins)", "H (needs)", "J (species)"], text: "They want it to include other [27] _______ that are judged to demonstrate understanding.", ans: "J", target: "p3-para1", quote: "...should be extended to other intelligent social animals such as elephants and dolphins...", trans: "Mở rộng ra các loài (species) thông minh khác như voi và cá heo.", syn: "other animals = other species", q_trans: "Họ muốn chiến dịch bao gồm cả các [27] _______ khác được đánh giá là thể hiện sự thấu hiểu.", cambridge: ["rudimentary", "species", "momentum"] },
+      { q: 28, p: 3, type: "select", options: ["A (experience)", "B (well-being)", "C (knowledge)", "D (regulations)", "E (charities)", "F (research)", "G (dolphins)", "H (needs)", "J (species)"], text: "One country introduced [28] _______ which went some way to protecting the apes.", ans: "D", target: "p3-para2", quote: "New Zealand considered... part of its new animal welfare bill... GAP campaigners say that these regulations...", trans: "New Zealand đưa ra các quy định (regulations) phúc lợi bảo vệ vượn.", syn: "welfare bill = regulations", q_trans: "Một quốc gia đã ban hành các [28] _______ nhằm hướng tới việc bảo vệ loài vượn người lớn.", cambridge: ["welfare", "regulation", "approval"] },
+      { q: 29, p: 3, type: "select", options: ["A (experience)", "B (well-being)", "C (knowledge)", "D (regulations)", "E (charities)", "F (research)", "G (dolphins)", "H (needs)", "J (species)"], text: "anyone who is interested in using apes for [29] _______ must first obtain the official go-ahead from the state.", ans: "F", target: "p3-para2", quote: "Testing or teaching involving apes now requires government approval... practice of using apes in biomedical research...", trans: "Muốn dùng vượn cho nghiên cứu (research) phải được chính quyền phê duyệt.", syn: "official go-ahead = government approval", q_trans: "bất kỳ ai muốn sử dụng vượn cho [29] _______ trước tiên phải nhận được sự chấp thuận chính thức.", cambridge: ["biomedical", "research", "practice"] },
+      { q: 30, p: 3, type: "select", options: ["A (experience)", "B (well-being)", "C (knowledge)", "D (regulations)", "E (charities)", "F (research)", "G (dolphins)", "H (needs)", "J (species)"], text: "prove that any advances gained do not come at the expense of the animal’s [30] _______.", ans: "B", target: "p3-para2", quote: "...benefits are not outweighed by harm to the individual animal.", trans: "Không gây tổn hại đến phúc lợi / an sinh (well-being) của động vật.", syn: "not outweighed by harm = at expense of well-being", q_trans: "chứng minh rằng những tiến bộ đạt được không phải trả giá bằng [30] _______ của con vật.", cambridge: ["outweigh", "well-being", "benefit"] },
+      { q: 31, p: 3, type: "select", options: ["A (experience)", "B (well-being)", "C (knowledge)", "D (regulations)", "E (charities)", "F (research)", "G (dolphins)", "H (needs)", "J (species)"], text: "projects that may lead to the acquisition of further [31] _______ about the way apes function and interact.", ans: "C", target: "p3-para2", quote: "...only studies that increase our understanding of these species.", trans: "Chỉ các dự án giúp mở mang kiến thức / hiểu biết (knowledge) về loài này.", syn: "increase understanding = acquisition of knowledge", q_trans: "dự án giúp tiếp thu thêm [31] _______ về cách vượn hoạt động và tương tác.", cambridge: ["acquisition", "understanding", "interact"] },
+      { q: 32, p: 3, type: "mc", options: ["A. to show that many people hold extreme views about animals.", "B. to suggest that campaigners are reluctant to criticise the law.", "C. to suggest that such inflated terminology is unnecessary.", "D. to argue that most people are not interested in protecting animals."], text: "Why does Stumpe refer to ‘layman’s terms’?", ans: "C", target: "p3-para3", quote: "It seems like a radical idea and that scares people, but when we talk about rights, it really just means protection in layman’s terms...", trans: "Stumpe ngụ ý các thuật ngữ đao to búa lớn là không cần thiết, bản chất chỉ đơn thuần là sự bảo vệ.", syn: "layman's terms = simplified view, inflated terms are unnecessary", q_trans: "Tại sao luật sư Stumpe lại đề cập đến 'layman’s terms' (cách hiểu bình dân)?", cambridge: ["terminology", "radical", "layman"] },
+      { q: 33, p: 3, type: "mc", options: ["A. Levels of intelligence and awareness differ between species.", "B. People disagree on how intelligent animals like apes are.", "C. Moral principles are not easy for everyone to understand.", "D. Human beings want to see themselves as separate from animals."], text: "According to Singer, what is the root of the problem?", ans: "D", target: "p3-para3", quote: "‘It’s that gulf between humans and animals that people want to maintain,’ he says.", trans: "Gốc rễ là con người muốn duy trì khoảng cách và coi mình tách biệt khỏi loài vật.", syn: "maintain gulf = see themselves as separate", q_trans: "Theo triết gia Peter Singer, đâu là căn nguyên gốc rễ của vấn đề?", cambridge: ["boundary", "separate", "discrimination"] },
+      { q: 34, p: 3, type: "mc", options: ["A. sentient animals could not be kept in cages.", "B. any form of large-scale agriculture would cease to exist.", "C. great apes would be granted all the same rights as humans.", "D. people could no longer offer shelter to an animal."], text: "If Francione’s current idea was implemented,", ans: "A", target: "p3-para5", quote: "...it would bring an end to captive animals altogether.", trans: "Sẽ chấm dứt hoàn toàn việc nuôi nhốt động vật (animals could not be kept in cages).", syn: "end to captive animals = not kept in cages", q_trans: "Nếu ý tưởng hiện tại của luật sư Francione được áp dụng thực tế,", cambridge: ["sentient", "captive", "property"] },
+      { q: 35, p: 3, type: "mc", options: ["A. She is suspicious of the reasoning behind it.", "B. She is doubtful of its chances of being generally accepted.", "C. She is reassured by the impartial way it is expressed.", "D. She is pleased by its logical development."], text: "What is the writer’s attitude to Francione’s theory?", ans: "B", target: "p3-para5", quote: "Francione’s approach is certainly several steps too far for many people.", "trans": "Tác giả cho rằng cách tiếp cận này đi quá xa đối với nhiều người -> Hoài nghi khả năng được đón nhận rộng rãi.", syn: "several steps too far = doubtful of acceptance", q_trans: "Thái độ của tác giả đối với lý thuyết của Francione là gì?", cambridge: ["attitude", "doubtful", "inconsistency"] },
+      { q: 36, p: 3, type: "mc", options: ["A. He recommends focusing on the way people look after animals.", "B. He would give rights only to those animals with a moral sense.", "C. He says that society should learn to be responsible for all of humanity.", "D. He thinks that conservation of endangered species should come first."], text: "How does de Waal change the perspective of the animal rights discussion?", ans: "A", target: "p3-para6", quote: "He believes the emphasis should be on the obligations humans have towards other animals, both for their care and for their conservation.", trans: "de Waal chuyển góc nhìn sang nghĩa vụ chăm sóc và bảo tồn của con người đối với động vật.", syn: "obligations for care = way people look after animals", q_trans: "Nhà linh trưởng học de Waal đã thay đổi góc nhìn của cuộc thảo luận như thế nào?", cambridge: ["obligation", "conservation", "responsibility"] },
+      { q: 37, p: 3, type: "ynng", text: "Particularly valuable animals in captivity are more likely to be protected by law.", ans: "NOT GIVEN", target: "p3-para2", quote: "...animals are mere property and their owners have no obligation to consider their best interests.", trans: "Bài đọc KHÔNG đề cập việc thú nuôi 'đặc biệt có giá trị' có được pháp luật bảo vệ nhiều hơn hay không.", syn: "Không có thông tin so sánh", q_trans: "Những động vật nuôi nhốt đặc biệt có giá trị sẽ có nhiều khả năng được pháp luật bảo vệ hơn.", cambridge: ["valuable", "captivity", "property"] },
+      { q: 38, p: 3, type: "ynng", text: "de Waal highlights the need to give human rights to higher order animals.", ans: "NO", target: "p3-para6", quote: "Primatologist Frans de Waal... says ‘The concept of rights applies only to those capable of carrying responsibilities...’", trans: "de Waal phản đối trao quyền vì động vật không thể gánh vác trách nhiệm công dân.", syn: "highlights need to give rights ≠ concept applies only to those carrying responsibilities", q_trans: "de Waal nhấn mạnh sự cần thiết phải trao quyền con người cho các loài động vật bậc cao.", cambridge: ["responsibility", "obligation", "society"] },
+      { q: 39, p: 3, type: "ynng", text: "If GAP beliefs were implemented in the wild, the survival rate of the larger apes would increase.", ans: "NO", target: "p3-para6", quote: "It is not clear what GAP’s proposals mean for wild apes, and even some of the animals’ most outspoken defenders are not convinced...", trans: "Tác giả chỉ rõ 'không rõ' (not clear) hiệu quả và giới chuyên môn cũng không tin đây là cách tốt nhất, trái với khẳng định chắc chắn.", syn: "survival rate would increase ≠ not clear, defenders not convinced", q_trans: "Nếu các niềm tin của GAP được áp dụng ngoài tự nhiên, tỉ lệ sống sót của các loài vượn lớn sẽ gia tăng.", cambridge: ["proposal", "defender", "survival"] },
+      { q: 40, p: 3, type: "ynng", text: "If people in Western countries, for example, learned to consider apes’ needs, fewer apes would be captured for sale.", ans: "YES", target: "p3-para7", quote: "...increased regard for the well-being of apes... would lead to a decreased demand for animals being kidnapped from the wild and exported...", trans: "Sự quan tâm đến phúc lợi vượn sẽ làm giảm nhu cầu săn bắt trộm để bán.", syn: "fewer apes captured for sale = decreased demand for kidnapped and exported animals", q_trans: "Nếu người dân ở các nước phương Tây học cách quan tâm đến nhu cầu của vượn, sẽ có ít cá thể bị săn bắt để bán hơn.", cambridge: ["kidnap", "export", "demand"] }
+    ];
+
+    let currentPassage = 1;
+    const userState = {};
+    const totalQ = 40;
+
+    let actx = null;
+    function playAudio(ok) {
+      try {
+        if (!actx) actx = new (window.AudioContext || window.webkitAudioContext)();
+        if (actx.state === 'suspended') actx.resume();
+        const o = actx.createOscillator();
+        const g = actx.createGain();
+        o.connect(g); g.connect(actx.destination);
+        if (ok) {
+          o.type = 'sine'; o.frequency.setValueAtTime(587, actx.currentTime);
+          g.gain.setValueAtTime(0.15, actx.currentTime);
+          g.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.6);
+          o.start(); o.stop(actx.currentTime + 0.6);
+        } else {
+          o.type = 'sawtooth'; o.frequency.setValueAtTime(160, actx.currentTime);
+          g.gain.setValueAtTime(0.15, actx.currentTime);
+          g.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.4);
+          o.start(); o.stop(actx.currentTime + 0.4);
+        }
+      } catch(e) {}
+    }
+
+    function renderPassage(pNum) {
+      const p = PASSAGES.find(x => x.id === pNum);
+      let html = `
+        <div class="passage-head">
+          <h1 class="p-title">${p.title}</h1>
+          <p class="p-sub">${p.sub}</p>
+        </div>
+      `;
+      p.paragraphs.forEach(para => {
+        html += `
+          <div class="para-box" id="${para.id}">
+            <span class="para-lbl">${para.label}</span>
+            <span>${para.text}</span>
+            <br>
+            <button class="btn-trans" onclick="toggleT('${para.id}-tr')">🌟 Mở dịch đoạn này</button>
+            <div class="trans-box" id="${para.id}-tr">${para.trans}</div>
+          </div>
+        `;
+      });
+      document.getElementById('passagePane').innerHTML = html;
+      document.getElementById('passagePane').scrollTop = 0;
+    }
+
+    function renderExercises(pNum) {
+      const qList = QUESTIONS.filter(x => x.p === pNum);
+      let html = '';
+
+      qList.forEach(q => {
+        let secTitle = '';
+        if (q.p === 1 && q.q === 1) secTitle = '📌 Questions 1–6: TRUE / FALSE / NOT GIVEN';
+        else if (q.p === 1 && q.q === 7) secTitle = '📌 Questions 7–13: Complete the notes (NO MORE THAN TWO WORDS)';
+        else if (q.p === 2 && q.q === 14) secTitle = '📌 Questions 14–16: Complete the sentences (NO MORE THAN TWO WORDS)';
+        else if (q.p === 2 && q.q === 17) secTitle = '📌 Questions 17–22: Match each event with the correct date (A–H)';
+        else if (q.p === 2 && q.q === 23) secTitle = '📌 Questions 23–26: Which paragraph contains the following info? (A–I)';
+        else if (q.p === 3 && q.q === 27) secTitle = '📌 Questions 27–31: Complete summary using list of words (A–J)';
+        else if (q.p === 3 && q.q === 32) secTitle = '📌 Questions 32–36: Choose the correct answer (A, B, C, or D)';
+        else if (q.p === 3 && q.q === 37) secTitle = '📌 Questions 37–40: YES / NO / NOT GIVEN';
+
+        if (secTitle) html += `<div class="sec-banner">${secTitle}</div>`;
+
+        const saved = userState[q.q];
+        const statusIco = saved ? (saved.correct ? '✅' : '❌') : '';
+
+        // Dynamic Chips Breakdown
+        let chips = [];
+        let why_c = '', why_w = '';
+        if (q.type === 'tfng' || q.type === 'ynng') {
+          const isTF = (q.type === 'tfng');
+          chips = [
+            { term: isTF ? 'TRUE' : 'YES', mean: 'Thông tin bài đọc trùng khớp 100%', status: q.ans === (isTF ? 'TRUE' : 'YES') ? 'green' : 'blue' },
+            { term: isTF ? 'FALSE' : 'NO', mean: 'Thông tin bài đọc mâu thuẫn trực tiếp', status: q.ans === (isTF ? 'FALSE' : 'NO') ? 'green' : 'blue' },
+            { term: 'NOT GIVEN', mean: 'Bài đọc không đủ dữ liệu kết luận', status: q.ans === 'NOT GIVEN' ? 'green' : 'blue' }
+          ];
+          if (q.ans === 'FALSE' || q.ans === 'NO') {
+            why_c = `Bài đọc xác nhận thông tin trái ngược: ${q.trans}`;
+            why_w = `Không chọn ${isTF ? 'TRUE' : 'YES'} vì dữ liệu bài đọc đối lập. Không chọn NOT GIVEN vì sự việc được đề cập rõ ràng.`;
+          } else if (q.ans === 'NOT GIVEN') {
+            why_c = `Bài đọc có đề cập chủ đề nhưng hoàn toàn KHÔNG đưa ra so sánh hay khẳng định: ${q.trans}`;
+            why_w = `Không chọn ${isTF ? 'TRUE/FALSE' : 'YES/NO'} vì tác giả không xác nhận nội dung này trong văn bản gốc.`;
+          } else {
+            why_c = `Bài đọc xác nhận trùng khớp hoàn toàn: ${q.trans}`;
+            why_w = `Không chọn ${isTF ? 'FALSE' : 'NO'} hay NOT GIVEN vì có dẫn chứng chứng minh rõ ràng.`;
+          }
+        } else if (q.type === 'fill') {
+          chips = [
+            { term: q.ans[0], mean: 'Từ vựng trích xuất nguyên văn từ bài đọc', status: 'green' },
+            { term: 'Quy tắc ngữ pháp', mean: 'Đúng vị trí từ loại & không quá 2 từ', status: 'blue' }
+          ];
+          why_c = `Chỗ trống cần từ phù hợp ngữ cảnh: '${q.ans[0]}'. Dẫn chứng: ${q.trans}`;
+          why_w = `Các từ khác dù đồng nghĩa nhưng không xuất hiện trong bài hoặc vượt quá giới hạn từ đều tính là sai.`;
+        } else if (q.type === 'mc') {
+          chips = q.options.map(opt => ({
+            term: `Lựa chọn ${opt[0]}`,
+            mean: opt.slice(3).trim(),
+            status: opt[0] === q.ans ? 'green' : 'blue'
+          }));
+          why_c = `Phương án ${q.ans} phản ánh chuẩn xác ý tác giả: ${q.trans}`;
+          why_w = `Các phương án còn lại bị sai vì suy diễn quá mức hoặc bài đọc không hề nhắc tới trong ngữ cảnh này.`;
+        } else {
+          chips = [
+            { term: `Lựa chọn ${q.ans}`, mean: 'Khớp chính xác với thông tin trong bài đọc', status: 'green' },
+            { term: 'Các lựa chọn khác', mean: 'Thuộc về niên đại hoặc đoạn văn khác', status: 'blue' }
+          ];
+          why_c = `Khớp nối chính xác với dẫn chứng trong bài đọc: ${q.trans}`;
+          why_w = `Các phương án khác thuộc về những nội dung / niên đại khác trong bài đọc.`;
+        }
+
+        html += `
+          <div class="q-card" id="card-${q.q}">
+            <div class="q-top">
+              <span class="q-num">${q.q}</span>
+              <span class="q-txt">${q.text}</span>
+              <span id="stat-${q.q}">${statusIco}</span>
+            </div>
+        `;
+
+        if (q.type === 'tfng' || q.type === 'ynng') {
+          const opts = (q.type === 'tfng') ? ['TRUE', 'FALSE', 'NOT GIVEN'] : ['YES', 'NO', 'NOT GIVEN'];
+          html += `
+            <select class="sel-box ${saved ? (saved.correct ? 'correct' : 'wrong') : ''}" id="ctrl-${q.q}" onchange="handleSelect(${q.q})">
+              <option value="">-- Chọn đáp án --</option>
+              ${opts.map(o => `<option value="${o}" ${saved && saved.val === o ? 'selected' : ''}>${o}</option>`).join('')}
+            </select>
+          `;
+        } else if (q.type === 'select') {
+          html += `
+            <select class="sel-box ${saved ? (saved.correct ? 'correct' : 'wrong') : ''}" id="ctrl-${q.q}" onchange="handleSelect(${q.q})">
+              <option value="">-- Chọn lựa chọn --</option>
+              ${q.options.map(o => {
+                const val = o.split(' ')[0].replace('.', '');
+                return `<option value="${val}" ${saved && saved.val === val ? 'selected' : ''}>${o}</option>`;
+              }).join('')}
+            </select>
+          `;
+        } else if (q.type === 'fill') {
+          html += `
+            <div class="fill-row">
+              <input type="text" class="inp-box ${saved ? (saved.correct ? 'correct' : 'wrong') : ''}" id="ctrl-${q.q}" placeholder="Nhập từ cần điền..." value="${saved ? saved.val : ''}">
+              <button class="btn-chk" onclick="handleFill(${q.q})">Check</button>
+            </div>
+          `;
+        } else if (q.type === 'mc') {
+          html += `<div class="mc-grid">`;
+          q.options.forEach(opt => {
+            const letter = opt[0];
+            let cls = '';
+            if (saved) {
+              if (letter === q.ans) cls = 'correct';
+              else if (saved.val === letter) cls = 'wrong';
+            }
+            html += `<button class="mc-opt ${cls}" onclick="handleMC(${q.q}, '${letter}')">${opt}</button>`;
+          });
+          html += `</div>`;
+        }
+
+        html += `
+          <div class="detailed-exp-card" id="exp-${q.q}" style="${saved ? 'display:block;' : 'display:none;'}">
+            <div class="exp-main-title">
+              <span>⚡ GIẢI THÍCH CHI TIẾT</span>
+              <button class="btn-loc" onclick="locateTarget('${q.target}')">🎯 Xem dẫn chứng trong bài</button>
+            </div>
+
+            <div class="exp-trans-quote">
+              💬 <b>Dịch:</b> ${q.q_trans}
+            </div>
+
+            <div class="exp-step-title">1. Phân tích các đáp án / Cụm từ then chốt:</div>
+            <div class="options-breakdown-grid">
+              ${chips.map(c => `
+                <div class="option-chip ${c.status === 'green' ? 'highlight' : ''}">
+                  <b>${c.term}</b> =${c.mean}
+                </div>
+              `).join('')}
+            </div>
+
+            <div class="exp-step-title">
+              2. <span class="badge-why-correct">✅ TẠI SAO ĐÚNG?</span>
+            </div>
+            <ul class="exp-bullet-desc">
+              <li><b>Dẫn chứng bài đọc:</b> <i>"${q.quote}"</i></li>
+              <li><b>Lập luận:</b> ${why_c}</li>
+              ${q.syn ? `<li><b>Từ đồng nghĩa:</b> <span class="syn-tag">${q.syn}</span></li>` : ''}
+            </ul>
+
+            <div class="exp-step-title">
+              3. <span class="badge-why-wrong">❌ TẠI SAO SAI & BẪY CẦN TRÁNH?</span>
+            </div>
+            <ul class="exp-bullet-desc">
+              <li>${why_w}</li>
+            </ul>
+
+            <div class="cambridge-section">
+              <div class="cambridge-title">🔊 Tra từ điển Cambridge:</div>
+              <p class="cambridge-guide-text">
+                Con hãy bấm vào đây — cô đã trích sẵn link cho con nghe từng từ rồi đó, con nhớ bấm loa 🔊 nghe và đọc theo cho chuẩn nhé:
+              </p>
+              <div class="cambridge-btn-group">
+                ${q.cambridge.map(w => `
+                  <a href="https://dictionary.cambridge.org/vi/dictionary/english/${encodeURIComponent(w)}" target="_blank" class="cambridge-pill-btn">
+                    🔊 Cambridge · ${w}
+                  </a>
+                `).join('')}
+              </div>
+              <div class="cambridge-tip-footer">
+                👉 Nếu trang chưa hiện đúng từ, con gõ từ đó vào ô tìm kiếm, bấm loa 🔊 nghe người bản xứ đọc và đọc theo.
+              </div>
+            </div>
+          </div>
+        </div>
+        `;
+      });
+
+      document.getElementById('exercisePane').innerHTML = html;
+      document.getElementById('exercisePane').scrollTop = 0;
+    }
+
+    function switchTab(num) {
+      currentPassage = num;
+      document.querySelectorAll('.tab-btn').forEach((btn, idx) => {
+        btn.classList.toggle('active', idx + 1 === num);
+      });
+      renderPassage(num);
+      renderExercises(num);
+    }
+
+    function handleSelect(qNum) {
+      const q = QUESTIONS.find(x => x.q === qNum);
+      const sel = document.getElementById(`ctrl-${qNum}`);
+      const val = sel.value;
+      if (!val) return;
+      const ok = (val.toUpperCase() === q.ans.toUpperCase());
+      userState[qNum] = { correct: ok, val: val };
+      sel.className = `sel-box ${ok ? 'correct' : 'wrong'}`;
+      document.getElementById(`stat-${qNum}`).innerText = ok ? '✅' : '❌';
+      document.getElementById(`exp-${qNum}`).style.display = 'block';
+      playAudio(ok);
+      if (ok) confetti({ particleCount: 25, spread: 50 });
+      updateStats();
+    }
+
+    function handleFill(qNum) {
+      const q = QUESTIONS.find(x => x.q === qNum);
+      const inp = document.getElementById(`ctrl-${qNum}`);
+      const val = inp.value.trim().toLowerCase();
+      if (!val) return;
+      const ok = q.ans.some(a => a.toLowerCase() === val);
+      userState[qNum] = { correct: ok, val: inp.value.trim() };
+      inp.className = `inp-box ${ok ? 'correct' : 'wrong'}`;
+      document.getElementById(`stat-${qNum}`).innerText = ok ? '✅' : '❌';
+      document.getElementById(`exp-${qNum}`).style.display = 'block';
+      playAudio(ok);
+      if (ok) confetti({ particleCount: 25, spread: 50 });
+      updateStats();
+    }
+
+    function handleMC(qNum, selectedLetter) {
+      const q = QUESTIONS.find(x => x.q === qNum);
+      const ok = (selectedLetter === q.ans);
+      userState[qNum] = { correct: ok, val: selectedLetter };
+      renderExercises(currentPassage);
+      playAudio(ok);
+      if (ok) confetti({ particleCount: 25, spread: 50 });
+      updateStats();
+    }
+
+    function toggleT(id) {
+      const el = document.getElementById(id);
+      if (el) el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+    }
+
+    function locateTarget(targetId) {
+      const el = document.getElementById(targetId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.classList.add('flash-target');
+        setTimeout(() => el.classList.remove('flash-target'), 2200);
+      }
+    }
+
+    function updateStats() {
+      const answered = Object.keys(userState).length;
+      const score = Object.values(userState).filter(x => x.correct).length;
+      document.getElementById('scoreBadge').innerText = `★ ${score}/${totalQ}`;
+      document.getElementById('countBadge').innerText = `${answered}/${totalQ} đã làm`;
+      document.getElementById('progressFill').style.width = `${(answered / totalQ) * 100}%`;
+    }
+
+    document.addEventListener('mouseup', () => {
+      const s = window.getSelection();
+      if (!s || s.isCollapsed || s.rangeCount === 0) return;
+      if (s.toString().trim().length < 2) return;
+      const r = s.getRangeAt(0);
+      const sp = document.createElement('span');
+      sp.className = 'user-highlighted';
+      try { r.surroundContents(sp); s.removeAllRanges(); } catch(e) {}
+    });
+
+    let sec = 1200, timer = null, isRun = false;
+    function toggleTimer() {
+      const btn = document.getElementById('btnTimer');
+      if (!isRun) {
+        isRun = true; btn.innerText = 'TẠM DỪNG';
+        timer = setInterval(() => {
+          if (sec > 0) {
+            sec--;
+            const m = String(Math.floor(sec/60)).padStart(2,'0');
+            const s = String(sec%60).padStart(2,'0');
+            document.getElementById('timerTxt').innerText = `${m}:${s}`;
+          } else {
+            clearInterval(timer);
+            alert('Đã hết giờ làm bài, vui lòng nộp bài nhé!');
+          }
+        }, 1000);
+      } else {
+        isRun = false; btn.innerText = 'TIẾP TỤC';
+        clearInterval(timer);
+      }
+    }
+
+    window.onload = () => {
+      switchTab(1);
+    };
+  </script>
+</body>
+</html>
